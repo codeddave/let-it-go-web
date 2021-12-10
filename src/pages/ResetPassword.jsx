@@ -1,13 +1,24 @@
 import { Field, Form, Formik } from "formik";
 import React from "react";
+import LetItGoLogo from "../assets/images/let-it-go.jpg";
+import "./ResetPassword.css";
 
 const ResetPassword = () => {
   return (
-    <div>
-      <Formik>
+    <div className="reset-page">
+      <section>
+        <img src={LetItGoLogo} className="logo" alt="" />
+      </section>
+      <Formik
+        initialValues={{
+          password: "",
+          confirmPassword: "",
+        }}
+      >
         {({}) => (
-          <Form>
-            <Field></Field>
+          <Form className="reset-form">
+            <Field name="password" placeholder="password" />
+            <Field name="confirmPassword" placeholder="confirm password" />
           </Form>
         )}
       </Formik>

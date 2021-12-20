@@ -19,6 +19,7 @@ const ResetPassword = () => {
           <Form className="reset-form">
             <Field name="password" placeholder="password" />
             <Field name="confirmPassword" placeholder="confirm password" />
+            <button className="reset-button">Reset Password</button>
           </Form>
         )}
       </Formik>

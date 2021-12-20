@@ -1,10 +1,24 @@
-import { Field, Form, Formik } from "formik";
+import { ErrorMessage, Field, Form, Formik } from "formik";
 import React from "react";
 import { useParams } from "react-router-dom";
 import { resetPasssword } from "../api/resetPassword";
 import LetItGoLogo from "../assets/images/let-it-go.jpg";
 import "./ResetPassword.css";
+import * as yup from "yup";
 
+const ResetPasswordValidationSchema = yup.object().shape({
+  password: yup.string().min(8, "Too Short!").required("Required!"),
+  confirmPassword: yup
+    .string()
+    .required("Required!")
+    .test(
+      "passwords-match",
+      "Passwords must match",
+      function validatePassword(value) {
+        return this.parent.password === value;
+      }
+    ),
+});
 const ResetPassword = () => {
   const { token } = useParams();
   const handleSubmit = (values) => {
@@ -21,11 +35,18 @@ const ResetPassword = () => {
           confirmPassword: "",
         }}
         onSubmit={handleSubmit}
+        validationSchema={ResetPasswordValidationSchema}
       >
         {({ errors, touched }) => (
           <Form className="reset-form">
-            <Field name="password" placeholder="password" />
-            <Field name="confirmPassword" placeholder="confirm password" />
+            <div>
+              <Field name="password" placeholder="password" />
+              <ErrorMessage name="password" />
+            </div>
+            <div>
+              <Field name="confirmPassword" placeholder="confirm password" />
+              <ErrorMessage name="confirmPassword" />
+            </div>
             <button type="submit" className="reset-button">
               Reset Password
             </button>

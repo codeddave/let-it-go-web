@@ -40,12 +40,20 @@ const ResetPassword = () => {
         {({ errors, touched }) => (
           <Form className="reset-form">
             <div>
-              <Field name="password" placeholder="password" />
-              <ErrorMessage name="password" />
+              <div>
+                <Field name="password" placeholder="password" />
+              </div>
+              <span className="form-error">
+                <ErrorMessage name="password" />
+              </span>
             </div>
             <div>
-              <Field name="confirmPassword" placeholder="confirm password" />
-              <ErrorMessage name="confirmPassword" />
+              <div>
+                <Field name="confirmPassword" placeholder="confirm password" />
+              </div>
+              <span className="form-error">
+                <ErrorMessage name="confirmPassword" />
+              </span>
             </div>
             <button type="submit" className="reset-button">
               Reset Password

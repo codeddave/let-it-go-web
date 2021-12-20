@@ -9,6 +9,7 @@ export const resetPasssword = async (password, token) => {
         password,
       }
     );
+    toast.success("Password reset successful! Login with new password.");
   } catch (error) {
     toast.error("something went wrong");
     console.log(error);

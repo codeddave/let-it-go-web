@@ -6,7 +6,11 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
-          <Route exact path="/reset-password" element={<ResetPassword />} />
+          <Route
+            exact
+            path="/reset-password/:token"
+            element={<ResetPassword />}
+          />
         </Routes>
       </Router>
     </div>
